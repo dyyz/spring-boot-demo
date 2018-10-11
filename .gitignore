@@ -5,6 +5,10 @@
 .mvn
 mvnw
 target
+.settings
+.classpath
+
+.project
 
 *.css
 *.js

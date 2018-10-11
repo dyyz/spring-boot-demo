@@ -1,0 +1,1 @@
+没有注册到服务中心，只使用了spring boot admin client 包

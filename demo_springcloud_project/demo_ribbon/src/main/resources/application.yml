@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+     cluster: ribbon
+     
+server:
+  port: 8765
+spring:
+  application:
+    name: demo-ribbon
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include[0]: "hystrix.stream"
+        include[1]: "health"
+        include[2]: "info"

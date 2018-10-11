@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: demo-turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # 设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址，多个用逗号分隔
+  instance:
+    prefer-ip-address: true
+
+turbine:
+  app-config: demo-ribbon, demo-ribbon-2, demo-client-feign # 参数指定了需要收集监控信息的服务名
+#  cluster-name-expression: "'default'" 
+  combine-host-port: true
+  cluster-name-expression: metadata['cluster'] # 参数指定了集群名称为
+  aggregator:
+    cluster-config: ribbon, feign
+  instanceUrlSuffix: 
+    ribbon: actuator/hystrix.stream
+    feign: actuator/hystrix.stream
+  
+server:
+  port: 8767
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+     
