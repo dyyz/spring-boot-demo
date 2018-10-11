@@ -6,3 +6,5 @@
 mvnw
 target
 
+*.css
+*.js

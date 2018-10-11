@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN
+<meta name="_csrf_header" content="${_csrf.headerName}"/> -->
+<title>注册页面</title>
+</head>
+<body>
+	<form action="/registry" method="post">
+		<p>姓名：<input type="text" name="username"></p>
+		<p>密码：<input type="password" name="password"></p>
+		<p><button type="submit">注册aa</button></p>
+	</form>
+</body>
+</html>
