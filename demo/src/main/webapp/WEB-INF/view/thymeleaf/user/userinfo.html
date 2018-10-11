@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>UserInfo</title>
+</head>
+<body>
+	<h3>用户查询界面</h3>
+	
+	<p th:text="'Hello!, ' + ${name} + '!'"></p>
+	<p>utext: <span th:utext="'Hello! <br/>dy'"></span></p>
+	<p th:text="'Hello! <br/>dy'"></p>
+	<p><span th:text="${user.password}"></span></p>
+	<table border="1">
+		<tr th:each="role: ${user.roleList}">
+			<td th:text="${role.role }"></td>
+		</tr>
+	</table>
+	<table border="1">
+		<tr th:each="role: ${permissions}">
+			<td th:text="${role.id }"></td>
+			<td th:text="${role.name }"></td>
+			<td th:text="${role.resourceType }"></td>
+		</tr>
+	</table>
+	
+	<table border="1">
+		<tr th:each="role: ${permissions}">
+		<div th:object="${role }">
+			<td th:text="*{id }"></td>
+			<td th:text="*{name }"></td>
+			<td th:text="*{resourceType }"></td>
+		</div>
+		</tr>
+	</table>
+	<hr/>
+	<p th:text="#{messagename}"></p>
+	<p th:text="#{main.title}"></p>
+	<p th:text="#{message.entrycreated(${user.uid})}"></p>
+	<a th:href="@{userAdd}">用户添加@{userAdd}</a>
+	<a th:href="@{/userInfo/userAdd}">用户添加@{/userAdd}</a>
+	<a th:href="@{~/userInfo/userAdd}">用户添加@{~/userAdd}</a>
+</body>
+</html>

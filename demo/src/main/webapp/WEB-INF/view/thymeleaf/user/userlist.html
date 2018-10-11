@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common_header(~{::title},~{},~{})">
+<title>用户列表界面</title>
+</head>
+<body class="container-fluid">
+	<h3>用户列表界面</h3>
+	
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>USERNAME</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user: ${users}">
+				<div th:object="${user}">
+					<td th:text="*{uid}"></td>
+					<td th:text="*{username}"></td>
+					<td><a th:href="@{'/user/update/' + ${user.uid}}">更新用户信息</button></td>
+				</div>
+			</tr>
+		</tbody>
+	</table>
+	<hr/>
+</body>
+</html>

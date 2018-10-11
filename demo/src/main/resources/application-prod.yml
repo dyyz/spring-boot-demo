@@ -1,0 +1,9 @@
+server:
+  port: 9090
+  
+# 必须将thymeleaf依赖注释
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/jsp/
+      suffix: .jsp

@@ -1,0 +1,19 @@
+## 页面默认前缀目录
+#spring.mvc.view.prefix=/WEB-INF/view/
+## 响应页面默认后缀
+#spring.mvc.view.suffix=.jsp
+
+#server:
+#  port: 8080
+
+spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/view/
+#      suffix: .jsp
+  profiles:
+    active: dev
+    
+#  jackson:
+#    date-format: yyyy-MM-dd HH\:mm\:ss
+#    time-zone: GMT+8

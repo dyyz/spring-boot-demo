@@ -1,0 +1,133 @@
+server:
+  port: 8090
+#默认为应用配置的上下文访问目录是"/"
+  servlet:
+    context-path: /boot
+
+
+########################################################
+###Devtools
+########################################################
+# 是否使用模板缓存
+# spring.thymeleaf.cache=false
+# spring.freemarker.cache=false
+# spring.groovy.template.cache=false
+# 默认情况下，更改/ META-INF / maven，/ META-INF / resources，/ resources，/ static，/ public或/ templates中的资源不会触发重新启动，
+# 但会触发实时重新加载。 
+# 如果你想自定义这些排除，你可以使用spring.devtools.restart.exclude属性  
+# spring.devtools.restart.additional-paths属性来配置其他路径以监视更改
+# spring.devtools.restart.enabled属性将其禁用
+#spring:
+#  devtools:
+#    restart:
+#      exclude: 
+
+########################################################
+###THYMELEAF (ThymeleafAutoConfiguration)
+########################################################
+#spring.thymeleaf.prefix=classpath:/templates/
+# set to false for hot refresh
+#在propertis配置文件中将spring.thymelef.cache=false
+#开发过程建议关闭缓存，不然在开发过程中修改页面不会立刻生效需要重启，生产可配置为true。
+uplodapic:
+  path: E:\\learn\\project\\demo\\uploadData\\
+  
+spring:
+  thymeleaf:
+    cache: false
+    prefix: /WEB-INF/view/thymeleaf/
+    suffix: .html
+    mode: HTML
+    #LEGACYHTML5非严格的HTML5/ HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html; charset=utf-8
+      
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+#  redis:
+#    host: 127.0.0.1
+#    password: 
+#    port: 6379
+#    jedis:
+#      pool:
+#        max-active: 8
+ 
+# Spring自带的内存的缓存管理器     
+#  cache:
+#    type: simple
+  messages:
+    basename: message/messages
+    encoding: UTF-8
+  quartz:
+    job-store-type: JDBC
+  servlet:
+    multipart:
+    #默认1MB可使用KB、MB
+      max-file-size: 2MB
+      
+#      mongodb
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017
+      database: test
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 
+    jedis:
+      pool:
+        max-active: 8
+        max-wait:
+          -1s
+        max-idle: 8
+        min-idle: 0
+    timeout:
+      10000
+
+#      host: 
+#      password:
+#      - 
+#      username: 
+#      port: 
+      
+#  mvc:
+#    static-path-pattern: /file/**
+#  resources:
+#    static-locations:
+#    - file:${uplodapic.path}
+      
+#  rabbitmq:
+#    addresses: 127.0.0.1
+#    username: guest
+#    password: guest
+#    port: 5672
+#    virtual-host: /
+#    connection-timeout:
+#      15000
+#    publisher-confirms: true
+#    publisher-returns: true
+#    template:
+#      mandatory: true
+    
+logging:
+  level:
+    com.example: info
+    o.a.shiro.authc.AbstractAuthenticator: error
+  path: classpath:/Log/
+  file: my.log
+#    
+#shiro:
+#  enabled: true
+
+picture:
+  upload:
+    type: image/jpeg,image/jpg,image/png

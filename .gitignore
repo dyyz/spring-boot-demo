@@ -1,0 +1,8 @@
+*.cmd
+*.log
+*.jar
+
+.mvn
+mvnw
+target
+

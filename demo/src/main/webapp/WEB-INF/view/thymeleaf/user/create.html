@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common_header(~{::title},~{},~{})">
+<title>用户添加界面</title>
+</head>
+<body class="container-fluid">
+
+	<center>
+		<h4 class="row">
+			<strong>用户添加界面</strong>
+		</h4>
+	</center>
+
+	<form class="form-horizontal" th:action="@{'/user/update/'+${userDetails.userInfo.uid}}" method="post"
+		th:object="${userDetails}">
+		<div class="form-group">
+			<label for="usernameLabel" class="col-md-4 control-label">用户名</label>
+			<div class="col-md-4">
+				<p class="form-control-static" th:text="*{userInfo.username}"></p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="addressLabel" class="col-md-4 control-label">地址</label>
+			<div class="col-md-4">
+				<input type="text" class="form-control" id="addressId"
+					th:value="*{address}" placeholder="地址">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="phoneLabel" class="col-md-4 control-label">手机号码</label>
+			<div class="col-md-4">
+				<input type="text" class="form-control" id="phoneId"
+					th:value="*{phone}" placeholder="手机号码" name="phone">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="ageLabel" class="col-md-4 control-label">年龄</label>
+			<div class="col-md-4">
+				<input type="text" class="form-control" id="ageId" th:value="*{age}"
+					placeholder="年龄" name="age">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="emailLabel" class="col-md-4 control-label">邮箱</label>
+			<div class="col-md-4">
+				<input type="email" class="form-control" id="emailId" th:value="*{email}" placeholder="jane.doe@example.com">
+			</div>
+		</div>
+
+		<div class="form-group radio">
+			<label for="sexLabel" class="col-md-4 control-label">性别</label>
+			<label class="col-md-4"> <input type="radio" name="optionsRadios" id="femaleId" th:value="*{sex}">女性
+			</label>
+		</div>
+		<div class="form-group radio">
+			<label for="sexLabel2" class="col-md-4 control-label"></label>
+			<label class="col-md-4"> <input type="radio" name="optionsRadios" id="maleId" th:value="*{sex}">男性
+			</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-md-4">
+				<button type="submit" class="btn btn-default">添加</button>
+			</div>
+		</div>
+	</form>
+
+
+</body>
+</html>

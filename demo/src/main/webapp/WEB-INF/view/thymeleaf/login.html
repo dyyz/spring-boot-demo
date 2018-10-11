@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+错误信息：<h4 th:text="${msg}"></h4>
+<form action="" method="post">
+    <p>账号：<input type="text" name="username" th:value="${username}" placeholder="admin" /></p>
+    <p>密码：<input type="text" name="password" th:value="${password}" placeholder="123456" /></p>
+	<table>
+		<tr>
+			<td>验证码：</td>
+			<td class="width50">
+				<input id="checkcode" name="checkcode" type="text" class="width50" />
+			</td>
+			<td><img th:src="@{createImage}" alt="验证码" title="点击更换" onclick="this.src='createImage?'+(new Date()).getTime();"/></td>
+			<td><span id="checkcode_msg" class="required"></span></td>
+	    </tr>
+	</table>
+	<p><input type="submit" value="登录"/></p>
+</form>
+</body>
+</html>
