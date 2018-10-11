@@ -4,6 +4,7 @@
 
 .mvn
 mvnw
+bin
 target
 .settings
 .classpath
