@@ -11,5 +11,7 @@ target
 
 .project
 
+.gitignore
+
 *.css
 *.js
