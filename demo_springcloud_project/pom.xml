@@ -15,13 +15,15 @@
 		<module>demo_client_feign</module><!--  -->
 		<module>demo_turbine</module><!--  -->
 		<module>demo_ribbon_2</module><!--  -->
-		<module>demo_gateway</module><!--  -->
+		<module>demo_gateway</module><!-- zuul网关 -->
 		<module>demo_admin_server</module>
 		<module>demo_admin_client</module>
 		<module>demo_admin_client_2</module>
 		<module>demo_sleuth</module>
 		<module>demo_sleuth_2</module>
 		<module>demo_rabbitmq</module>
+		<module>demo_config_server</module>
+		<module>demo_config_client</module>
 	</modules>
 	
 	<name>demo_for_springcloud</name>
