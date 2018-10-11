@@ -1,0 +1,141 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+
+	<head>
+		<title>Freemark Index</title>
+	</head>
+	<body>
+		Welcome ${name}!!!
+		
+		<#-- 我是不会输出的注释 -->
+		
+		<p><#if name != "Joe">Joe can not see this message...</#if></p>
+		<p><#if name == "Joe">Joe can see this message...</#if></p>
+		<p>
+			<#if name == "female">Female show this message...
+			<#else>Male see this message...
+			</#if>
+		</p>
+		
+		<table border=1>
+			<#list users as user>
+			<tr><td>${user.name}</td></tr>
+			</#list>
+		</table>
+		
+		<#list users>
+			<table border=1>
+				<#items as user>
+				<tr><td>${user.name!"admin"}</td></tr>
+				</#items>
+			</table>
+		<#else>
+			<p>No Data!!!!</p>
+		</#list>
+		
+		<#-- 被sep覆盖的部分也可以写成<#sep>, </#sep>
+			只有当还有下一项时才会被执行，因此最后一个数据后面不会有逗号
+		 -->
+		<p>User Name List: <#list users as user>${user.name}<#sep>, </#list>
+	
+		<#-- include指令插入其他文件的内容， 引入footer.flt -->
+		<#include "/footer.flt" />
+	
+		<p>处理不存在的变量，变量名后跟一个!和默认值
+		<br/>
+			Welcome ${userName!"ABC"} !!
+			<br/>
+			??来询问一个变量是否存在，和if指令合并
+			<#if userName??><h1>Welcome ${userName}!</h1></#if>
+		</p>
+	
+		<p><b>自定义指令可以使用 macro 指令来定义</b>
+		<br/>
+		<!-- 参数0到多个，顺序不重要，可给参数设置默认值 -->
+		<#macro greet person color="gray">
+			<!-- 宏定义体，将会在使用该变量作为指令时执行 -->
+		  	<font size="+2" color="${color}">Hello ${person}!</font>
+		</#macro>
+		<!-- 在FTL标记中通过 @代替#来使用自定义指令 
+			当调用这个宏的时候，只能使用在 macro 指令中定义的参数
+			同时也必须给出在宏中定义所有参数的值
+		-->
+		<@greet person="Jone" color="red"/><br/>
+		<@greet person="Jone" />
+		</p>
+		
+		<hr/><br/>
+		
+		<p><b>嵌套内容</b>
+			<br/>
+			<#macro border>
+				<font >Hello John!</font><br/>
+				<!-- <#nested> 指令执行位于开始和结束标记指令之间的模板代码段
+					nested 指令也可以多次被调用
+				 -->
+				<#nested><br/>
+				<#nested><br/>
+			</#macro>
+			<@border>Welcome You To FreeMarker!</@border>
+			<br/>
+			<#macro app>
+				<font >Hello John!</font><br/>
+			</#macro>
+			<@app>Welcome You To FreeMarker!</@app>
+			<br/>
+			<!-- 在嵌套的内容中，宏的 局部变量 是不可见的 -->
+			<#macro repeat count>
+				<#local y="test" />
+				<#list 1..count as x>
+					内部变量：${y} ${x}/${count}. 被嵌套变量：<#nested><br/>
+				</#list>
+			</#macro>
+			<@repeat count=3>y=${y!"?"} x=${x!"?"} count=${count!"?"}</@repeat>
+		</p>
+		<hr/><br/>
+		<p>
+			<b>宏和循环变量</b>
+			<br/>
+			<#macro repeat2 count>
+				<#list 1..count as x>
+					<#nested x, x/2, x==count><br/>
+				</#list>
+			</#macro>
+			<@repeat2 count=4; c, halfc, last>c=${c}, halfc=${halfc}, <#if last>Last!!!</#if></@repeat2><br/>
+			<#-- <@repeat2 count=4; c, halfc>c=${c}, halfc=${halfc}, <#if last>Last!!!</#if></@repeat2><br/> -->
+			
+			<#macro repeat3>
+				<#nested 1><br/>
+				<#nested 2><br/>
+				<#nested 3><br/>
+			</#macro>
+			<@repeat3;x>${x} Anything</@repeat3>
+		</p>
+		
+		<p>
+		<br/>
+			<#assign x = "plain">
+			1. ${x}  <#-- we see the plain var. here -->
+			<@test/>
+			6. ${x}  <#-- the value of plain var. was not changed -->
+			<#list ["loop"] as x>
+			    7. ${x}  <#-- now the loop var. hides the plain var. -->
+			    <#assign x = "plain2"> <#-- replace the plain var, hiding does not mater here -->
+			    8. ${x}  <#-- it still hides the plain var. -->
+			</#list>
+			9. ${x}  <#-- the new value of plain var. -->
+			
+			<#macro test>
+			  2. ${x}  <#-- we still see the plain var. here -->
+			  <#local x = "local">
+			  3. ${x}  <#-- now the local var. hides it -->
+			  <#list ["loop"] as x>
+			    4. ${x}  <#-- now the loop var. hides the local var. -->
+			  </#list>
+			  5. ${x}  <#-- now we see the local var. again -->
+			</#macro>
+		</p>
+	
+	</body>
+</html>

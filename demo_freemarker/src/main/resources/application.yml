@@ -1,0 +1,35 @@
+spring:
+  freemarker:
+    cache: false
+    content-type: text/html; charset=utf-8
+    suffix: .flt
+    template-loader-path:
+    - /WEB-INF/view/freemarker/
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+  security:
+    oauth2:
+      client:
+        registration:
+          my-client-1:
+            client-id: abcd
+            client-secret: password
+            client-name: Client for user scope
+            provider: my-oauth-provider
+            
+server:
+  port: 8070
+  
+logging:
+  level: 
+    org.springframework.boot.autoconfigure.security: info
