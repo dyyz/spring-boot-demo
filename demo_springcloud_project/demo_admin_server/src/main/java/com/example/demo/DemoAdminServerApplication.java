@@ -47,15 +47,16 @@ public class DemoAdminServerApplication {
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 
-	    	SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
-            successHandler.setTargetUrlParameter("redirectTo");
+//	    	SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+//            successHandler.setTargetUrlParameter("redirectTo");
 
             http.authorizeRequests()
                     .antMatchers("/assets/**").permitAll()
                     .antMatchers("/login").permitAll()
                     .anyRequest().authenticated()
                     .and()
-                    .formLogin().loginPage("/login").successHandler(successHandler).and()
+//                    .formLogin().loginPage("/login").successHandler(successHandler).and()
+                    .formLogin().loginPage("/login").and()
                     .logout().logoutUrl("/logout").and()
                     .httpBasic().and()
                     .csrf().disable();
