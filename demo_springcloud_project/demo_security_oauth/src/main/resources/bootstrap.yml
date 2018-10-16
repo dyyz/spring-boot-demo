@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: demo_oauth2_server
+  cloud:
+    config:
+      discovery:
+        service-id: demo_config_server
+        enabled: true
+      fail-fast: true

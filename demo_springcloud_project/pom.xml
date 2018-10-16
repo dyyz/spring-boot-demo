@@ -24,6 +24,8 @@
 		<module>demo_rabbitmq</module>
 		<module>demo_config_server</module>
 		<module>demo_config_client</module>
+
+		<module>demo_security_oauth</module>
 	</modules>
 	
 	<name>demo_for_springcloud</name>
